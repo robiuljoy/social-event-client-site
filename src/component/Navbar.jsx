@@ -27,7 +27,7 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="cursor-pointer hover:bg-amber-400 btn-circle avatar"
+              className="cursor-pointer hover:bg-[#ffc108] btn-circle avatar"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center">
                 <MdAccountCircle className="w-full h-full " />
