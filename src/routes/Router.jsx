@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-
+        loader: () => fetch("http://localhost:3000/main"),
         element: <Home></Home>,
       },
     ],
