@@ -23,8 +23,8 @@ const Home = () => {
     <div>
       <Banner />
       <Gallery />
-      <Newsletter />
       <MainData data={data} />
+      <Newsletter />
     </div>
   );
 };
