@@ -27,8 +27,16 @@ const EventDetails = () => {
     const joinData = {
       eventId: event._id,
       eventTitle: event.title,
+      thumbnail: event.thumbnail,
+      eventDate: event.eventDate,
+      location: event.location,
+      eventType: event.eventType,
       userEmail: user.email,
       userName: user.displayName,
+      createdBy: {
+        name: event.createdBy?.name || event.createdBy,
+        email: event.createdBy?.email || "",
+      },
     };
 
     try {
