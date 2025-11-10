@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import SpinnerLoader from "../loader/SpinnerLoader";
+import Swal from "sweetalert2";
 
 const ManageEvents = () => {
   const { user } = useContext(AuthContext);
@@ -37,11 +38,30 @@ const ManageEvents = () => {
   };
 
   const handleUpdate = async (id) => {
+    const edited = editedEvents[id];
+    const original = myEvents.find((e) => e._id === id);
+    const updatedEvent = { ...original, ...edited };
+
+    if (
+      !updatedEvent.title ||
+      !updatedEvent.description ||
+      !updatedEvent.location ||
+      !updatedEvent.thumbnail ||
+      !updatedEvent.eventDate
+    ) {
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "error",
+        title: "All fields are required.",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      return;
+    }
+
     try {
-      const updatedEvent = {
-        ...myEvents.find((e) => e._id === id),
-        ...editedEvents[id],
-      };
       await fetch(`http://localhost:3000/events/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -52,6 +72,15 @@ const ManageEvents = () => {
         const newState = { ...prev };
         delete newState[id];
         return newState;
+      });
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: "Event updated successfully",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
       });
     } catch (err) {
       console.log(err);
@@ -89,7 +118,7 @@ const ManageEvents = () => {
                 <img
                   src={event.thumbnail}
                   alt={event.title}
-                  className="w-full sm:w-20 h-20 object-cover rounded-md mr-0 sm:mr-4 mb-2 sm:mb-0 flex-shrink-0"
+                  className="w-full sm:w-20 h-20 object-cover rounded-md mr-0 sm:mr-4 mb-2 sm:mb-0 shrink-0"
                 />
 
                 <div className="flex-1 flex flex-col gap-2 mb-2 sm:mb-0">
