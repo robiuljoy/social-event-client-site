@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { MdAccountCircle } from "react-icons/md";
 
 const Navbar = () => {
@@ -22,6 +22,7 @@ const Navbar = () => {
               Upcoming Events
             </a>
           </div>
+          <Link to="/auth/login">LogIn</Link>
 
           <div className="dropdown dropdown-end">
             <div

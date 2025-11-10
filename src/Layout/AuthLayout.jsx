@@ -1,9 +1,15 @@
 import React from "react";
+import LoginForm from "../pages/LoginForm";
+import { Outlet } from "react-router";
+import Register from "../pages/Register";
 
 const AuthLayout = () => {
   return (
     <div>
-      <h3>This s auth</h3>
+      <Outlet>
+        <LoginForm></LoginForm>
+        <Register></Register>
+      </Outlet>
     </div>
   );
 };
