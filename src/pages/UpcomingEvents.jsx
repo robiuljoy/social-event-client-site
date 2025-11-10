@@ -9,9 +9,9 @@ const UpcomingEvents = () => {
     fetch("http://localhost:3000/events")
       .then((res) => res.json())
       .then((data) => {
-        const upcoming = data.filter(
-          (event) => new Date(event.eventDate) >= new Date()
-        );
+        const upcoming = data
+          .filter((event) => new Date(event.eventDate) >= new Date())
+          .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
         setEvents(upcoming);
       })
       .catch((err) => console.log(err));
@@ -27,7 +27,7 @@ const UpcomingEvents = () => {
         {events.map((event) => (
           <div
             key={event._id}
-            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group"
+            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300  group bg-[#1E1A29]"
           >
             <div className="absolute top-4 left-4 bg-linear-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10 shadow-md">
               {event.eventType}
@@ -36,10 +36,10 @@ const UpcomingEvents = () => {
             <img
               src={event.thumbnail}
               alt={event.title}
-              className="w-full h-64 object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+              className="w-full h-64 object-cover block transition-transform duration-500 ease-in-out group-hover:scale-105"
             />
 
-            <div className="bg-[#1E1A29] p-6 rounded-b-2xl relative z-0 flex flex-col justify-between h-72">
+            <div className="p-6 flex flex-col justify-between h-72">
               <div>
                 <h3 className="text-2xl font-bold text-white mb-2 hover:text-purple-400 transition-colors duration-300">
                   {event.title}
@@ -70,13 +70,11 @@ const UpcomingEvents = () => {
 
               <button
                 onClick={() => navigate(`/events/${event._id}`)}
-                className="mt-4 w-full py-2 rounded-lg bg-linear-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold hover:scale-105 transition-transform duration-300"
+                className="mt-4 w-full py-2 rounded-lg bg-linear-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold cursor-pointer hover:opacity-90 transition"
               >
                 View Event
               </button>
             </div>
-
-            <div className="absolute bottom-0 left-0 w-full h-12 bg-linear-to-t from-[#081613] to-transparent"></div>
           </div>
         ))}
       </div>

@@ -114,7 +114,8 @@ const CreateEvent = () => {
             minDate={new Date()}
             placeholderText="Select Event Date"
             className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500 w-full"
-            calendarClassName="bg-[#1E1A29] text-gray-200 rounded-md shadow-lg max-h-80 overflow-y-auto"
+            calendarClassName="bg-[#1E1A29] text-gray-200 cursor-pointer rounded-md shadow-lg max-h-60 overflow-y-auto"
+            popperClassName="z-50"
           />
 
           <button
