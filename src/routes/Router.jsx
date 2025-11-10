@@ -6,6 +6,8 @@ import Register from "../pages/Register";
 import LoginForm from "../pages/LoginForm";
 import PrivateRoute from "../provider/PrivateRoute";
 import CreateEvent from "../pages/createEvent";
+import UpcomingEvents from "../pages/UpcomingEvents";
+import EventDetails from "../pages/EventDetails";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
             <CreateEvent />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/upcoming-events",
+        element: <UpcomingEvents />,
+      },
+      {
+        path: "/events/:id",
+        element: <EventDetails />,
       },
     ],
   },
