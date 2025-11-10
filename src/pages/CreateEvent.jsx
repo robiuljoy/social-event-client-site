@@ -2,11 +2,9 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
 
 const CreateEvent = () => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -29,7 +27,7 @@ const CreateEvent = () => {
       return Swal.fire("Error", "Please fill in all fields", "error");
     }
 
-    if (!eventDate || eventDate < new Date()) {
+    if (eventDate < new Date()) {
       return Swal.fire("Error", "Please select a future date", "error");
     }
 
@@ -40,7 +38,10 @@ const CreateEvent = () => {
       thumbnail,
       location,
       eventDate,
-      createdBy: user.email,
+      createdBy: {
+        name: user.displayName || "Anonymous",
+        email: user.email,
+      },
     };
 
     try {
@@ -52,7 +53,12 @@ const CreateEvent = () => {
 
       if (res.ok) {
         Swal.fire("Success", "Event created successfully", "success");
-        navigate("/");
+        setTitle("");
+        setDescription("");
+        setEventType("Cleanup");
+        setThumbnail("");
+        setLocation("");
+        setEventDate(null);
       } else {
         throw new Error("Failed to create event");
       }
@@ -73,14 +79,12 @@ const CreateEvent = () => {
             onChange={(e) => setTitle(e.target.value)}
             className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500"
           />
-
           <textarea
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500"
-          ></textarea>
-
+          />
           <select
             value={eventType}
             onChange={(e) => setEventType(e.target.value)}
@@ -91,7 +95,6 @@ const CreateEvent = () => {
             <option value="Donation">Donation</option>
             <option value="Other">Other</option>
           </select>
-
           <input
             type="text"
             placeholder="Thumbnail Image URL"
@@ -99,7 +102,6 @@ const CreateEvent = () => {
             onChange={(e) => setThumbnail(e.target.value)}
             className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500"
           />
-
           <input
             type="text"
             placeholder="Location"
@@ -107,7 +109,6 @@ const CreateEvent = () => {
             onChange={(e) => setLocation(e.target.value)}
             className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500"
           />
-
           <DatePicker
             selected={eventDate}
             onChange={(date) => setEventDate(date)}
@@ -117,7 +118,6 @@ const CreateEvent = () => {
             calendarClassName="bg-[#1E1A29] text-gray-200 cursor-pointer rounded-md shadow-lg max-h-60 overflow-y-auto"
             popperClassName="z-50"
           />
-
           <button
             type="submit"
             className="bg-white text-[#112e29] hover:bg-[#ffc108] transition-all ease-in-out font-semibold rounded-md py-2 mt-2 cursor-pointer"
