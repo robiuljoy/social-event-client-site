@@ -7,11 +7,11 @@ const MainData = ({ data }) => {
         Our Social Development Events
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-16">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-16 md:w-11/12 md:mx-auto">
         {data.map((item) => (
           <div
             key={item._id}
-            className="rounded-xl shadow-md bg-white hover:shadow-lg transition duration-300 overflow-hidden p-5"
+            className="rounded-xl shadow-md bg-white hover:shadow-lg transition duration-300 overflow-hidden p-5 cursor-pointer"
           >
             <div className="flex justify-items-start mb-5 gap-3">
               <div className="rounded-full h-3  w-3  bg-red-400"></div>
@@ -21,9 +21,9 @@ const MainData = ({ data }) => {
             <img
               src={item.thumbnail}
               alt={item.title}
-              className="w-full h-65 object-cover rounded-2xl"
+              className="w-full h-65 object-cover rounded-t-2xl transform transition-transform duration-500 ease-in-out hover:scale-105"
             />
-            <div className="p-5">
+            <div className="p-5 bg-[#edeff0] mt-3 rounded-b-2xl text-lg">
               <h3 className="font-semibold text-xl mb-2 text-[#112e29]">
                 {item.title}
               </h3>
