@@ -18,10 +18,13 @@ const Navbar = () => {
     <div className="navbar bg-[#05332b] shadow-sm text-white p-6">
       <div className="flex flex-col md:flex-row justify-between items-center md:w-11/12 md:mx-auto w-full gap-4">
         <div>
-          <a className="cursor-pointer font-semibold md:text-2xl text-xl hover:text-[#ffc108]">
+          <Link
+            to="/"
+            className="cursor-pointer font-semibold md:text-2xl text-xl hover:text-[#ffc108]"
+          >
             Better
             <span className="text-[#ffc108] hover:text-white">Together</span>
-          </a>
+          </Link>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center md:gap-12 w-full md:w-auto gap-2">

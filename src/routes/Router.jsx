@@ -4,6 +4,8 @@ import Home from "../pages/Home";
 import AuthLayout from "../Layout/AuthLayout";
 import Register from "../pages/Register";
 import LoginForm from "../pages/LoginForm";
+import PrivateRoute from "../provider/PrivateRoute";
+import CreateEvent from "../pages/createEvent";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +16,14 @@ const router = createBrowserRouter([
         index: true,
         loader: () => fetch("http://localhost:3000/main"),
         element: <Home></Home>,
+      },
+      {
+        path: "/create-event",
+        element: (
+          <PrivateRoute>
+            <CreateEvent />
+          </PrivateRoute>
+        ),
       },
     ],
   },
