@@ -48,11 +48,11 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#081613] via-[#062520] via-[#052c25] to-[#04342c]">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-[#081613] via-[#062520] via-[#052c25] to-[#04342c]">
       <div className="flex w-[850px] bg-[#1E1A29] rounded-2xl overflow-hidden shadow-lg">
         <div className="w-1/2 relative hidden md:block left-part">
           <img src={img} alt="" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
           <div className="absolute top-6 left-6">
             <h1 className="text-white text-2xl font-bold tracking-wide">
               BetterTogether
@@ -136,9 +136,9 @@ const Register = () => {
             </button>
 
             <div className="flex items-center my-4">
-              <hr className="flex-grow border-gray-600" />
+              <hr className="grow border-gray-600" />
               <span className="px-2 text-gray-400 text-sm">or</span>
-              <hr className="flex-grow border-gray-600" />
+              <hr className="grow border-gray-600" />
             </div>
 
             <button

@@ -2,8 +2,11 @@ import React from "react";
 
 const Newsletter = () => {
   return (
-    <div className="bg-gradient-to-b from-[#081613] via-[#062520] to-[#04342c] py-16 px-4 text-center text-white">
-      <div className="max-w-2xl mx-auto space-y-6">
+    <div className="py-16 px-4 text-center text-white bg-linear-to-r from-[#05332b] via-[#112e29] to-[#05332b] relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-72 h-72 bg-[#ffc108]/20 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#ffc108]/20 rounded-full translate-x-1/2 translate-y-1/2"></div>
+
+      <div className="relative max-w-2xl mx-auto space-y-6">
         <h2 className="text-3xl md:text-4xl font-bold">
           Stay Connected with Our Social Initiatives
         </h2>

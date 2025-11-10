@@ -2,67 +2,56 @@ import React from "react";
 
 const MainData = ({ data }) => {
   return (
-    <div className="py-12 bg-[#edeff0]">
-      <h2 className="text-3xl font-bold text-[#112e29] text-center mb-8">
+    <div className="py-12 bg-gradient-to-b from-[#081613] to-[#052c25]">
+      <h2 className="text-4xl font-bold text-white text-center mb-12">
         Our Social Development Events
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-16 md:w-11/12 md:mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 px-6 md:px-16 md:w-11/12 md:mx-auto">
         {data.map((item) => (
           <div
             key={item._id}
-            className="rounded-xl shadow-md bg-white hover:shadow-lg transition duration-300 overflow-hidden p-5 cursor-pointer"
+            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group"
           >
-            <div className="flex justify-items-start mb-5 gap-3">
-              <div className="rounded-full h-3  w-3  bg-red-400"></div>
-              <div className="rounded-full h-3  w-3  bg-orange-300"></div>
-              <div className="rounded-full h-3  w-3  bg-green-500"></div>
+            <div className="absolute top-4 left-4 bg-linear-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10 shadow-md">
+              {item.eventType}
             </div>
+
             <img
               src={item.thumbnail}
               alt={item.title}
-              className="w-full h-65 object-cover rounded-t-2xl transform transition-transform duration-500 ease-in-out hover:scale-105"
+              className="w-full h-64 object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
             />
-            <div className="p-5 bg-[#edeff0] mt-3 rounded-b-2xl text-lg">
-              <h3 className="font-semibold text-xl mb-2 text-[#112e29]">
+
+            <div className="bg-[#1E1A29] p-6 rounded-b-2xl relative z-0">
+              <h3 className="text-2xl font-bold text-white mb-2 hover:text-purple-400 transition-colors duration-300">
                 {item.title}
               </h3>
-              <p className="text-[#112e29] text-sm mb-4">
-                {item.description?.slice(0, 100)}...
+              <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+                {item.description}
               </p>
-              <div className="flex flex-col gap-1 text-sm text-[#112e29] mb-3">
+
+              <div className="flex flex-col gap-2 text-gray-200 text-sm">
                 <span>
-                  <span className="font-semibold text-[#112e29]">
-                    Event Type:
-                  </span>{" "}
-                  {item.eventType}
-                </span>
-                <span>
-                  <span className="font-semibold text-[#112e29]">
-                    Location:
-                  </span>{" "}
+                  <span className="font-semibold text-white">Location:</span>{" "}
                   {item.location}
                 </span>
                 <span>
-                  <span className="font-semibold text-[#112e29]">
-                    Event Date:
-                  </span>{" "}
+                  <span className="font-semibold text-white">Event Date:</span>{" "}
                   {new Date(item.eventDate).toLocaleDateString()}
                 </span>
                 <span>
-                  <span className="font-semibold text-[#112e29]">
-                    Created By:
-                  </span>{" "}
-                  {item.createdBy?.name}
-                </span>
-                <span>
-                  <span className="font-semibold text-[#112e29]">
-                    Created At:
-                  </span>{" "}
-                  {new Date(item.createdAt).toLocaleDateString()}
+                  <span className="font-semibold text-white">Created By:</span>{" "}
+                  {item.createdBy?.name || item.createdBy}
                 </span>
               </div>
+
+              <button className="mt-4 w-full py-2 rounded-lg bg-linear-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold hover:scale-105 transition-transform duration-300">
+                View Event
+              </button>
             </div>
+
+            <div className="absolute bottom-0 left-0 w-full h-12 bg-linear-to-t from-[#081613] to-transparent"></div>
           </div>
         ))}
       </div>

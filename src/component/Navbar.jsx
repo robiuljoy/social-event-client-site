@@ -27,12 +27,12 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center md:gap-12 w-full md:w-auto gap-2">
+        <div className="flex flex-col md:flex-row justify-between items-center md:gap-12 w-full md:w-auto gap-5">
           <div>
             <Link
               to="/upcoming-events"
               href=""
-              className="md:text-xl text-sm hover:text-[#ffc108] hover:underline font-normal"
+              className="px-15 py-4 rounded-xl text-lg font-semibold cursor-pointer bg-white text-[#112e29] hover:bg-[#ffc108] transition-all ease-in-out"
             >
               Upcoming Events
             </Link>
