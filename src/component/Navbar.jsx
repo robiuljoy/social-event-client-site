@@ -1,8 +1,19 @@
-import React from "react";
-import { Link, NavLink } from "react-router";
+import React, { useContext } from "react";
+import { Link } from "react-router";
 import { MdAccountCircle } from "react-icons/md";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="navbar bg-[#05332b] shadow-sm text-white p-6">
       <div className="flex flex-col md:flex-row justify-between items-center md:w-11/12 md:mx-auto w-full gap-4">
@@ -22,38 +33,61 @@ const Navbar = () => {
               Upcoming Events
             </a>
           </div>
-          <Link to="/auth/login">LogIn</Link>
 
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="cursor-pointer hover:bg-[#ffc108] btn-circle avatar"
+          {!user?.email && (
+            <Link
+              to="/auth/login"
+              className="bg-[#ffc108] text-[#05332b] px-4 py-2 rounded hover:bg-yellow-400 transition"
             >
-              <div className="w-10 h-10 rounded-full flex items-center justify-center">
-                <MdAccountCircle className="w-full h-full " />
+              Log In
+            </Link>
+          )}
+
+          {user?.email && (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="cursor-pointer btn-circle avatar tooltip tooltip-bottom"
+                data-tip={user.displayName}
+              >
+                <div className="w-10 h-10 rounded-full overflow-hidden">
+                  <img src={user.photoURL} alt={user.displayName} />
+                </div>
               </div>
+              <ul
+                tabIndex="-1"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <Link
+                    className="justify-between bg-[#05332b] mb-2 p-2"
+                    to="/create-event"
+                  >
+                    Create Event
+                  </Link>
+                </li>
+                <li>
+                  <Link className="bg-[#05332b] mb-2 p-2" to="/manage-events">
+                    Manage Event
+                  </Link>
+                </li>
+                <li>
+                  <Link className="bg-[#05332b] p-2 mb-2" to="/joined-events">
+                    Joined Event
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="bg-[#05332b] p-2 w-full text-left"
+                  >
+                    Log Out
+                  </button>
+                </li>
+              </ul>
             </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a className="justify-between bg-[#05332b] mb-2 p-2">
-                  Create Event
-                </a>
-              </li>
-              <li>
-                <a className="bg-[#05332b] mb-2 p-2">Manage Event</a>
-              </li>
-              <li>
-                <a className="bg-[#05332b] p-2 mb-2">Joined Event</a>
-              </li>
-              <li>
-                <a className="bg-[#05332b] p-2">Log Out</a>
-              </li>
-            </ul>
-          </div>
+          )}
         </div>
       </div>
     </div>

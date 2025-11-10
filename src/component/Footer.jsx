@@ -5,7 +5,7 @@ import { FiX } from "react-icons/fi";
 const Footer = () => {
   return (
     <>
-      <footer className="footer footer-horizontal footer-center bg-gradient-to-b from-[#081613] via-[#062520] via-[#052c25] to-[#04342c] text-primary-content p-10">
+      <footer className="footer footer-horizontal footer-center bg-linear-to-b from-[#081613] via-[#062520] via-[#052c25] to-[#04342c] text-primary-content p-10">
         <aside>
           <svg
             width="50"
