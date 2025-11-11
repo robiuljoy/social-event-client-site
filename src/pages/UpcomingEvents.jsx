@@ -5,6 +5,8 @@ const UpcomingEvents = () => {
   const [events, setEvents] = useState([]);
   const [eventTypeFilter, setEventTypeFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const eventsPerPage = 9;
   const navigate = useNavigate();
 
   const fetchEvents = async () => {
@@ -26,6 +28,7 @@ const UpcomingEvents = () => {
         .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
 
       setEvents(upcoming);
+      setCurrentPage(1);
     } catch (err) {
       console.log(err);
     }
@@ -34,6 +37,11 @@ const UpcomingEvents = () => {
   useEffect(() => {
     fetchEvents();
   }, [eventTypeFilter, searchQuery]);
+
+  const indexOfLast = currentPage * eventsPerPage;
+  const indexOfFirst = indexOfLast - eventsPerPage;
+  const currentEvents = events.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(events.length / eventsPerPage);
 
   return (
     <div className="py-12 bg-linear-to-b from-[#081613] to-[#052c25] min-h-screen">
@@ -64,7 +72,7 @@ const UpcomingEvents = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 px-6 md:px-16 md:w-11/12 md:mx-auto">
-        {events.map((event) => (
+        {currentEvents.map((event) => (
           <div
             key={event._id}
             className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group bg-[#1E1A29]"
@@ -118,6 +126,48 @@ const UpcomingEvents = () => {
           </div>
         ))}
       </div>
+
+      {events.length > eventsPerPage && (
+        <div className="flex justify-center items-center gap-2 mt-10">
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 rounded-md ${
+              currentPage === 1
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-[#ffc108] text-[#112e29]"
+            }`}
+          >
+            Previous
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`px-3 py-1 rounded-md ${
+                currentPage === i + 1
+                  ? "bg-[#ffc108] text-[#112e29]"
+                  : "bg-[#1E1A29] text-white"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 rounded-md ${
+              currentPage === totalPages
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-[#ffc108] text-[#112e29]"
+            }`}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };
