@@ -15,6 +15,18 @@ const Register = () => {
   const { createUser, updateUser, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const showToast = (icon, title) => {
+    Swal.fire({
+      toast: true,
+      position: "top-end",
+      icon: icon,
+      title: title,
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+    });
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
     if (
@@ -22,29 +34,28 @@ const Register = () => {
       !/(?=.*[A-Z])/.test(password) ||
       password.length < 6
     ) {
-      return Swal.fire(
-        "Error",
-        "Password must be at least 6 characters and include uppercase & lowercase letters",
-        "error"
+      return showToast(
+        "error",
+        "Password must be at least 6 characters and include uppercase & lowercase letters"
       );
     }
 
     createUser(email, password)
       .then(() => updateUser({ displayName: name, photoURL }))
       .then(() => {
-        Swal.fire("Success", "Account created successfully", "success");
+        showToast("success", "Account created successfully");
         navigate("/");
       })
-      .catch((err) => Swal.fire("Error", err.message, "error"));
+      .catch((err) => showToast("error", err.message));
   };
 
   const handleGoogleLogin = () => {
     googleLogin()
       .then(() => {
-        Swal.fire("Success", "Logged in successfully", "success");
+        showToast("success", "Logged in successfully");
         navigate("/");
       })
-      .catch((err) => Swal.fire("Error", err.message, "error"));
+      .catch((err) => showToast("error", err.message));
   };
 
   return (

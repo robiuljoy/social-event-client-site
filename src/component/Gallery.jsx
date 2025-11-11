@@ -26,7 +26,7 @@ const Gallery = () => {
 
       <div className="flex gap-6 animate-marquee">
         {photos.concat(photos).map((src, index) => (
-          <div key={index} className="flex-shrink-0">
+          <div key={index} className="shrink-0">
             <img
               src={src}
               alt={`event-${index}`}

@@ -13,25 +13,37 @@ const LoginForm = () => {
   const { signIn, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const showToast = (icon, title) => {
+    Swal.fire({
+      toast: true,
+      position: "top-end",
+      icon: icon,
+      title: title,
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+    });
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
     signIn(email, password)
       .then(() => {
-        Swal.fire("Success", "Logged in successfully", "success");
+        showToast("success", "Logged in successfully");
         navigate("/");
       })
       .catch((err) => {
-        Swal.fire("Error", err.message, "error");
+        showToast("error", err.message);
       });
   };
 
   const handleGoogleLogin = () => {
     googleLogin()
       .then(() => {
-        Swal.fire("Success", "Logged in successfully", "success");
+        showToast("success", "Logged in successfully");
         navigate("/");
       })
-      .catch((err) => Swal.fire("Error", err.message, "error"));
+      .catch((err) => showToast("error", err.message));
   };
 
   return (

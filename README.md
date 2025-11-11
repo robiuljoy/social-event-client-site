@@ -1,16 +1,30 @@
-# React + Vite
+# Social Development Events
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web platform designed to promote and organize community-driven events such as environmental campaigns, educational workshops, and social awareness programs. Built with **React**, **Express**, **MongoDB**, and **Tailwind CSS**, this project aims to make social engagement easier .
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Site URL
 
-## React Compiler
+[https://your-live-site-url.com](https://your-live-site-url.com)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Key Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Event Management System** — Browse, create, and manage social events like tree plantation drives, blood donation camps, and awareness programs.
+- **Smart Filtering & Search** — Easily find events by category, type, or location with real-time filtering.
+- **User Authentication** — Secure login and registration.
+- **Dynamic Animations** — Smooth page transitions and fade-in effects using **Framer Motion** for a modern user experience.
+
+- **Fully Responsive Design** — Optimized for all devices, from mobile to desktop.
+
+---
+
+## Tech Used
+
+**Frontend:** React, React Router, Framer Motion, DaisyUI, Tailwind CSS,Sweet Alert  
+**Backend:** Node.js, Express.js, MongoDB (Atlas)  
+**Tools:** Vite, Firebase , Environment Variables
+
+---
