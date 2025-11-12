@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router";
 import { MdAccountCircle } from "react-icons/md";
 import { AuthContext } from "../provider/AuthProvider";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -37,7 +38,7 @@ const Navbar = () => {
               Upcoming Events
             </Link>
           </div>
-
+          <ThemeToggle></ThemeToggle>
           {!user?.email && (
             <Link
               to="/auth/login"

@@ -68,27 +68,29 @@ const CreateEvent = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#081613] p-6">
-      <div className="bg-[#1E1A29] p-10 rounded-2xl w-full max-w-2xl shadow-lg">
-        <h2 className="text-2xl text-white font-semibold mb-6">Create Event</h2>
+    <div className="min-h-screen flex items-center justify-center bg-base-100 transition-all duration-300 p-6">
+      <div className="bg-base-200 p-10 rounded-2xl w-full max-w-2xl shadow-lg">
+        <h2 className="text-2xl font-semibold text-base-content mb-6">
+          Create Event
+        </h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="text"
             placeholder="Event Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500"
+            className="input input-bordered input-primary w-full text-base-content bg-base-100"
           />
           <textarea
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500"
+            className="textarea textarea-bordered textarea-primary w-full text-base-content bg-base-100"
           />
           <select
             value={eventType}
             onChange={(e) => setEventType(e.target.value)}
-            className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500"
+            className="select select-bordered select-primary w-full text-base-content bg-base-100"
           >
             <option value="Cleanup">Cleanup</option>
             <option value="Plantation">Plantation</option>
@@ -100,27 +102,27 @@ const CreateEvent = () => {
             placeholder="Thumbnail Image URL"
             value={thumbnail}
             onChange={(e) => setThumbnail(e.target.value)}
-            className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500"
+            className="input input-bordered input-primary w-full text-base-content bg-base-100"
           />
           <input
             type="text"
             placeholder="Location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500"
+            className="input input-bordered input-primary w-full text-base-content bg-base-100"
           />
           <DatePicker
             selected={eventDate}
             onChange={(date) => setEventDate(date)}
             minDate={new Date()}
             placeholderText="Select Event Date"
-            className="bg-[#2B2636] border border-[#3D3750] rounded-md px-3 py-2 text-gray-200 focus:outline-none focus:border-purple-500 w-full"
-            calendarClassName="bg-[#1E1A29] text-gray-200 cursor-pointer rounded-md shadow-lg max-h-60 overflow-y-auto"
+            className="input input-bordered input-primary w-full text-base-content bg-base-100"
+            calendarClassName="bg-base-200 text-base-content cursor-pointer rounded-md shadow-lg max-h-60 overflow-y-auto"
             popperClassName="z-50"
           />
           <button
             type="submit"
-            className="bg-white text-[#112e29] hover:bg-[#ffc108] transition-all ease-in-out font-semibold rounded-md py-2 mt-2 cursor-pointer"
+            className="btn btn-primary w-full text-base-100 mt-2"
           >
             Create Event
           </button>

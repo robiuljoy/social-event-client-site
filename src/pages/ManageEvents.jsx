@@ -89,17 +89,17 @@ const ManageEvents = () => {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center h-screen text-white">
+      <div className="flex justify-center items-center h-screen text-base-content bg-base-100">
         <SpinnerLoader />
       </div>
     );
 
   return (
-    <div className="bg-[#081613] min-h-screen py-10 px-4 sm:px-6 lg:px-10 text-white">
+    <div className="bg-base-100 min-h-screen py-10 px-4 sm:px-6 lg:px-10 text-base-content transition-all duration-300">
       <h2 className="text-3xl font-bold text-center mb-8">Manage My Events</h2>
 
       {myEvents.length === 0 ? (
-        <p className="text-center text-gray-400">
+        <p className="text-center text-base-content/50">
           You haven't created any events yet.
         </p>
       ) : (
@@ -109,9 +109,9 @@ const ManageEvents = () => {
             return (
               <div
                 key={event._id}
-                className="flex flex-col sm:flex-row items-start sm:items-center bg-[#1E1A29] rounded-xl shadow-lg p-4 hover:shadow-2xl transition-all w-full"
+                className="flex flex-col sm:flex-row items-start sm:items-center bg-base-200 rounded-xl shadow-lg p-4 hover:shadow-2xl transition-all w-full"
               >
-                <div className="text-gray-400 font-semibold mr-2 sm:mr-4 mb-2 sm:mb-0">
+                <div className="text-base-content/50 font-semibold mr-2 sm:mr-4 mb-2 sm:mb-0">
                   {index + 1}.
                 </div>
 
@@ -128,14 +128,14 @@ const ManageEvents = () => {
                     onChange={(e) =>
                       handleChange(event._id, "title", e.target.value)
                     }
-                    className="bg-[#2B2636] border border-[#3D3750] rounded-md px-2 py-1 text-gray-200 focus:outline-none"
+                    className="input input-bordered input-primary w-full bg-base-100 text-base-content"
                   />
                   <textarea
                     value={currentEdit.description ?? event.description}
                     onChange={(e) =>
                       handleChange(event._id, "description", e.target.value)
                     }
-                    className="bg-[#2B2636] border border-[#3D3750] rounded-md px-2 py-1 text-gray-200 focus:outline-none"
+                    className="textarea textarea-bordered textarea-primary w-full bg-base-100 text-base-content"
                   />
                   <input
                     type="text"
@@ -143,7 +143,7 @@ const ManageEvents = () => {
                     onChange={(e) =>
                       handleChange(event._id, "location", e.target.value)
                     }
-                    className="bg-[#2B2636] border border-[#3D3750] rounded-md px-2 py-1 text-gray-200 focus:outline-none"
+                    className="input input-bordered input-primary w-full bg-base-100 text-base-content"
                   />
                   <input
                     type="text"
@@ -151,11 +151,11 @@ const ManageEvents = () => {
                     onChange={(e) =>
                       handleChange(event._id, "thumbnail", e.target.value)
                     }
-                    className="bg-[#2B2636] border border-[#3D3750] rounded-md px-2 py-1 text-gray-200 focus:outline-none"
+                    className="input input-bordered input-primary w-full bg-base-100 text-base-content"
                   />
                 </div>
 
-                <div className="flex flex-col sm:ml-4 text-sm text-gray-300">
+                <div className="flex flex-col sm:ml-4 text-sm text-base-content">
                   <input
                     type="date"
                     value={
@@ -172,11 +172,11 @@ const ManageEvents = () => {
                         new Date(e.target.value)
                       )
                     }
-                    className="bg-[#2B2636] border border-[#3D3750] rounded-md px-2 py-1 text-gray-200 focus:outline-none mb-2"
+                    className="input input-bordered input-primary w-full bg-base-100 text-base-content mb-2"
                   />
                   <button
                     onClick={() => handleUpdate(event._id)}
-                    className="bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-500 transition"
+                    className="btn btn-primary w-full"
                   >
                     Update
                   </button>

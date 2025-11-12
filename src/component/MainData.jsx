@@ -1,11 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 const MainData = ({ data }) => {
-  const navigate = useNavigate();
   return (
-    <div className="py-12 bg-linear-to-b from-[#081613] to-[#052c25]">
-      <h2 className="text-4xl font-bold text-white text-center mb-12">
+    <div className="py-12 bg-base-100 transition-all duration-300">
+      <h2 className="text-4xl font-bold text-base-content text-center mb-12">
         Our Social Development Events
       </h2>
 
@@ -13,9 +12,9 @@ const MainData = ({ data }) => {
         {data.map((item) => (
           <div
             key={item._id}
-            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300  group bg-[#1E1A29]"
+            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group bg-base-200"
           >
-            <div className="absolute top-4 left-4 bg-linear-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10 shadow-md">
+            <div className="absolute top-4 left-4 bg-linear-to-r from-primary to-secondary text-white px-3 py-1 rounded-full text-sm font-semibold z-10 shadow-md">
               {item.eventType}
             </div>
 
@@ -26,21 +25,20 @@ const MainData = ({ data }) => {
             />
 
             <div className="p-6 rounded-b-2xl relative z-0">
-              <h3 className="text-2xl font-bold text-white mb-2 hover:text-purple-400 transition-colors duration-300">
+              <h3 className="text-2xl font-bold text-base-content mb-2 hover:text-primary transition-colors duration-300">
                 {item.title}
               </h3>
-              <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+              <p className="text-base-content/70 text-sm mb-4 line-clamp-3">
                 {item.description}
               </p>
 
-              <div className="flex flex-col gap-2 text-gray-200 text-sm">
+              <div className="flex flex-col gap-2 text-base-content/80 text-sm">
                 <span>
-                  <span className="font-semibold text-white">Location:</span>{" "}
+                  <span className="font-semibold">Location:</span>{" "}
                   {item.location}
                 </span>
-
                 <span>
-                  <span className="font-semibold text-white">Created By:</span>{" "}
+                  <span className="font-semibold">Created By:</span>{" "}
                   {item.createdBy?.name || item.createdBy}
                 </span>
               </div>

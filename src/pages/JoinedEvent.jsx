@@ -26,17 +26,17 @@ const JoinedEvents = () => {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center h-screen text-white">
+      <div className="flex justify-center items-center h-screen text-base-content bg-base-100">
         <SpinnerLoader />
       </div>
     );
 
   return (
-    <div className="bg-[#081613] min-h-screen py-10 px-4 sm:px-6 lg:px-10 text-white">
+    <div className="bg-base-100 min-h-screen py-10 px-4 sm:px-6 lg:px-10 text-base-content transition-all duration-300">
       <h2 className="text-3xl font-bold text-center mb-8">My Joined Events</h2>
 
       {joinedEvents.length === 0 ? (
-        <p className="text-center text-gray-400">
+        <p className="text-center text-base-content/50">
           You haven't joined any events yet.
         </p>
       ) : (
@@ -44,10 +44,10 @@ const JoinedEvents = () => {
           {joinedEvents.map((event, index) => (
             <div
               key={event._id}
-              className="flex flex-col sm:flex-row items-start sm:items-center bg-[#1E1A29] rounded-xl shadow-lg p-4 hover:shadow-2xl transition-all cursor-pointer w-full"
+              className="flex flex-col sm:flex-row items-start sm:items-center bg-base-200 rounded-xl shadow-lg p-4 hover:shadow-2xl transition-all cursor-pointer w-full"
               onClick={() => navigate(`/events/${event.eventId}`)}
             >
-              <div className="text-gray-400 font-semibold mr-2 sm:mr-4 mb-2 sm:mb-0">
+              <div className="text-base-content/50 font-semibold mr-2 sm:mr-4 mb-2 sm:mb-0">
                 {index + 1}.
               </div>
 
@@ -58,22 +58,24 @@ const JoinedEvents = () => {
               />
 
               <div className="flex-1 flex flex-col justify-between mb-2 sm:mb-0">
-                <h3 className="text-white font-semibold text-lg">
+                <h3 className="text-base-content font-semibold text-lg">
                   {event.eventTitle}
                 </h3>
-                <p className="text-gray-400 text-sm">
-                  <span className="font-medium text-white">Date:</span>{" "}
+                <p className="text-base-content/70 text-sm">
+                  <span className="font-medium text-base-content">Date:</span>{" "}
                   {new Date(event.eventDate).toLocaleDateString()}
                 </p>
-                <p className="text-gray-400 text-sm">
-                  <span className="font-medium text-white">Location:</span>{" "}
+                <p className="text-base-content/70 text-sm">
+                  <span className="font-medium text-base-content">
+                    Location:
+                  </span>{" "}
                   {event.location}
                 </p>
               </div>
 
-              <div className="flex flex-col sm:ml-4 text-sm text-gray-300">
+              <div className="flex flex-col sm:ml-4 text-sm text-base-content/70">
                 <p>Created by: {event.createdBy?.name}</p>
-                <p className="text-gray-400">{event.createdBy?.email}</p>
+                <p className="text-base-content/50">{event.createdBy?.email}</p>
               </div>
             </div>
           ))}
