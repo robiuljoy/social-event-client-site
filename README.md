@@ -6,7 +6,7 @@ A modern web platform designed to promote and organize community-driven events s
 
 ## 🚀 Live Site URL
 
-[https://bettertogether15.netlify.app/](https://bettertogether15.netlify.app/)
+[https://bettertogethersocialevent.netlify.app/](https://bettertogethersocialevent.netlify.app/)
 
 ---
 
