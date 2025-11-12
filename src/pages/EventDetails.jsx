@@ -11,7 +11,7 @@ const EventDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/events/${id}`)
+    fetch(`https://social-event-web-api.vercel.app/events/${id}`)
       .then((res) => res.json())
       .then((data) => setEvent(data))
       .catch((err) => console.log(err));
@@ -40,11 +40,14 @@ const EventDetails = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/joinedEvents", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(joinData),
-      });
+      const res = await fetch(
+        "https://social-event-web-api.vercel.app/joinedEvents",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(joinData),
+        }
+      );
       if (res.ok) {
         Swal.fire("Success", "You joined the event successfully", "success");
       } else {

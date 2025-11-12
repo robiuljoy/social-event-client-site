@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:3000/main"),
+        loader: () => fetch("https://social-event-web-api.vercel.app/main"),
         element: <Home></Home>,
       },
       {

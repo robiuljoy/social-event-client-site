@@ -12,7 +12,7 @@ const JoinedEvents = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/joinedEvents`)
+    fetch(`https://social-event-web-api.vercel.app/joinedEvents`)
       .then((res) => res.json())
       .then((data) => {
         const userEvents = data

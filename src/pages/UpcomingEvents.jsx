@@ -5,11 +5,13 @@ const UpcomingEvents = () => {
   const [events, setEvents] = useState([]);
   const [eventTypeFilter, setEventTypeFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const eventsPerPage = 9;
   const navigate = useNavigate();
 
   const fetchEvents = async () => {
     try {
-      let url = `http://localhost:3000/events?`;
+      let url = `https://social-event-web-api.vercel.app/events?`;
 
       if (eventTypeFilter && eventTypeFilter !== "All") {
         url += `eventType=${encodeURIComponent(eventTypeFilter)}&`;
@@ -26,6 +28,7 @@ const UpcomingEvents = () => {
         .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
 
       setEvents(upcoming);
+      setCurrentPage(1); // Reset page when filters/search change
     } catch (err) {
       console.log(err);
     }
@@ -34,6 +37,16 @@ const UpcomingEvents = () => {
   useEffect(() => {
     fetchEvents();
   }, [eventTypeFilter, searchQuery]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(events.length / eventsPerPage);
+  const startIndex = (currentPage - 1) * eventsPerPage;
+  const currentEvents = events.slice(startIndex, startIndex + eventsPerPage);
+
+  const goToPage = (page) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+  };
 
   return (
     <div className="py-12 bg-base-100 min-h-screen transition-all duration-300">
@@ -64,7 +77,7 @@ const UpcomingEvents = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 px-6 md:px-16 md:w-11/12 md:mx-auto">
-        {events.map((event) => (
+        {currentEvents.map((event) => (
           <div
             key={event._id}
             className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group bg-base-200"
@@ -114,6 +127,37 @@ const UpcomingEvents = () => {
           </div>
         ))}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center gap-2 mt-10">
+          <button
+            onClick={() => goToPage(currentPage - 1)}
+            className="px-3 py-1 bg-base-200 text-base-content rounded-md hover:bg-base-300 transition"
+          >
+            Previous
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+            <button
+              key={num}
+              onClick={() => goToPage(num)}
+              className={`px-3 py-1 rounded-md transition ${
+                num === currentPage
+                  ? "bg-primary text-white"
+                  : "bg-base-200 text-base-content hover:bg-base-300"
+              }`}
+            >
+              {num}
+            </button>
+          ))}
+          <button
+            onClick={() => goToPage(currentPage + 1)}
+            className="px-3 py-1 bg-base-200 text-base-content rounded-md hover:bg-base-300 transition"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const ManageEvents = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await fetch("http://localhost:3000/events");
+      const res = await fetch("https://social-event-web-api.vercel.app/events");
       const data = await res.json();
       const userCreatedEvents = data
         .filter((event) => event.createdBy?.email === user.email)
@@ -62,7 +62,7 @@ const ManageEvents = () => {
     }
 
     try {
-      await fetch(`http://localhost:3000/events/${id}`, {
+      await fetch(`https://social-event-web-api.vercel.app/events/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedEvent),
