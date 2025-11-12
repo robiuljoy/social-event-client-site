@@ -45,11 +45,14 @@ const CreateEvent = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/events", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newEvent),
-      });
+      const res = await fetch(
+        "https://social-event-web-api.vercel.app/events",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newEvent),
+        }
+      );
 
       if (res.ok) {
         Swal.fire("Success", "Event created successfully", "success");
